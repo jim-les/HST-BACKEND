@@ -17,7 +17,7 @@ python-dotenv
 pytz
 PyYAML
 referencing
-rpds-py
+
 sqlparse
 typing-extensions
 uritemplate
