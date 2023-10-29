@@ -11,9 +11,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+import dj_database_url
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+dotenv_path = os.path.join(BASE_DIR, '.env')
+load_dotenv(dotenv_path)
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'drf_spectacular',
+    'rest_framework',
+    
 ]
 
 MIDDLEWARE = [
@@ -76,8 +86,12 @@ WSGI_APPLICATION = 'HST.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'hst_db',
+        'USER': 'hst_db_user',
+        'PASSWORD': '4cODjHgm45O4bKYPa2qBDeQU9jfdrKap',
+        'HOST': 'dpg-ckv7vrq37rbc73f8qd70-a.oregon-postgres.render.com',
+        'PORT': '',
     }
 }
 
@@ -122,3 +136,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email backend configurations
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",}
+
+SPEXTACULAR_SETTINGS = {"TITLE": "HST API", "DESCRIPTION": "HST API description", 
+                        "VERSION": "1.0.0",}
