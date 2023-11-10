@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import dj_database_url
 from datetime import timedelta
 from HST.config import get_db_details
@@ -20,7 +20,7 @@ from django.core.management.utils import get_random_secret_key
 
 
 
-load_dotenv()
+#load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -143,11 +143,9 @@ WSGI_APPLICATION = 'HST.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-db_data = get_db_details()
+#db_data = get_db_details()
 
-DATABASES = {
-    'default': dj_database_url.config(default=db_data)
-}
+DATABASES = "postgres://hst_db_user:4cODjHgm45O4bKYPa2qBDeQU9jfdrKap@dpg-ckv7vrq37rbc73f8qd70-a.oregon-postgres.render.com/hst_db"
 
 
 # Password validation
