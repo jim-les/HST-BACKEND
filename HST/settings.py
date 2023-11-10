@@ -15,7 +15,9 @@ import os
 #from dotenv import load_dotenv
 import dj_database_url
 from datetime import timedelta
-from HST.config import get_db_details
+from decouple import config
+
+
 from django.core.management.utils import get_random_secret_key
 
 
@@ -145,9 +147,13 @@ WSGI_APPLICATION = 'HST.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 #db_data = get_db_details()
 
-DATABASES = "postgres://hst_db_user:4cODjHgm45O4bKYPa2qBDeQU9jfdrKap@dpg-ckv7vrq37rbc73f8qd70-a.oregon-postgres.render.com/hst_db"
+#DATABASES = "postgres://hst_db_user:4cODjHgm45O4bKYPa2qBDeQU9jfdrKap@dpg-ckv7vrq37rbc73f8qd70-a.oregon-postgres.render.com/hst_db"
 
-
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
